@@ -117,6 +117,10 @@ GameState.prototype.update = function() {
   this.roidGenerator.update();
 };
 
+GameState.prototype.render = function() {
+  //this.game.debug.body(this.ship);
+}
+
 GameState.prototype.destroyAsteroid = function(roid) {
   // Create explosion flames
   for (var k = 0; k < 10; k++) {
