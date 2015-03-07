@@ -18,6 +18,7 @@ var Ship = function(game, group, bulletGroup, x, y,
   this.body.setSize(this.width, this.width);
   this.body.collideWorldBounds = true;
   this.speed = 0;
+  this.moveAngle = 0;
   
   this.gunLock = GUN_LOCK;
 
@@ -38,11 +39,25 @@ Ship.prototype.move = function(angle) {
       newAngle += 360;
     }
   }
+  this.moveAngle = angle;
+  
+  this.speed = SHIP_SPEED * SCALE;
+};
+
+Ship.prototype.face = function(angle) {
+  // Set angle so that we tween the right direction
+  var newAngle = angle;
+  if (Math.abs(newAngle - this.angle) > 180) {
+    if (this.angle < 0) {
+      newAngle -= 360;
+    } else {
+      newAngle += 360;
+    }
+  }
   this.game.add.tween(this).to({angle:newAngle},
                                TURN_DURATION,
                                Phaser.Easing.Back.Out).start();
-  this.speed = SHIP_SPEED * SCALE;
-};
+}
 
 Ship.prototype.update = function() {
   // Friction
@@ -50,7 +65,7 @@ Ship.prototype.update = function() {
   if (this.speed < 0) {
     this.speed = 0;
   }
-  this.body.velocity = angleToPoint(this.angle,
+  this.body.velocity = angleToPoint(this.moveAngle,
                                     this.speed);
   
   // Firing update
