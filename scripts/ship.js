@@ -4,7 +4,7 @@ var GUN_LOCK = 10;
 var TURN_DURATION = 120;
 var BULLET_SPEED = 1000.0;
 var Ship = function(game, group, bulletGroup, x, y,
-                    shotSound, jumpSound) {
+                    shotSound) {
   Phaser.Sprite.call(this,
                      game,
                      x, y,
@@ -22,10 +22,8 @@ var Ship = function(game, group, bulletGroup, x, y,
   this.gunLock = GUN_LOCK;
 
   this.radius = Math.min(this.width, this.height) / 2;
-  this.canJump = true;
 
   this.shotSound = shotSound;
-  this.jumpSound = jumpSound;
 };
 Ship.prototype = Object.create(Phaser.Sprite.prototype);
 Ship.prototype.constructor = Ship;
@@ -82,24 +80,4 @@ Ship.prototype.onHit = function(power) {
   this.game.add.tween(this).to({tint:0xffffff},
                                10,
                                Phaser.Easing.Linear.Out).start();
-};
-
-Ship.prototype.jump = function() {
-  /*
-  if (this.canJump) {
-    this.canJump = false;
-    var radiusStart = Math.min(this.width, this.height) / 2;
-    var jumpUp = this.game.add.tween(this).to({radius:radiusStart + JUMP_HEIGHT},
-                                              JUMP_DURATION,
-                                              Phaser.Easing.Quadratic.Out);
-    var jumpDown = this.game.add.tween(this).to({radius:radiusStart},
-                                                JUMP_DURATION,
-                                                Phaser.Easing.Quadratic.In);
-    jumpDown.onComplete.add(function() {
-      this.canJump = true;
-    }, this);
-    jumpUp.chain(jumpDown);
-    jumpUp.start();
-    this.jumpSound.play();
-  }*/
 };

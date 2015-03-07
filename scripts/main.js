@@ -30,8 +30,7 @@ GameState.prototype.create = function() {
                        this.groups.bullets,
                        SCREEN_WIDTH / 2,
                        SCREEN_HEIGHT / 2,
-                       this.game.add.audio("shot"),
-                       this.game.add.audio("jump"));
+                       this.game.add.audio("shot"));
   this.cursors = this.game.input.keyboard.createCursorKeys();
   
   this.roidGenerator = new RoidGenerator(this.game,
@@ -108,11 +107,7 @@ GameState.prototype.update = function() {
   if (this.game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
     this.ship.fire();
   }
-  // Jumping
-  if (this.game.input.keyboard.isDown(Phaser.Keyboard.X)) {
-    this.ship.jump();
-  }
-  
+
   // Spawn new asteroids
   this.roidGenerator.update();
 };

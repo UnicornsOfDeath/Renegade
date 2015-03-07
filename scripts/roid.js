@@ -20,6 +20,7 @@ var Roid = function(game, group, bulletGroup,
   this.playerGroup = playerGroup;
   
   game.physics.arcade.enable(this);
+  this.body.setSize(this.width, this.width);
   this.body.allowRotation = true;
 
   this.game = game;
