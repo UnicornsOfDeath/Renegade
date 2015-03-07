@@ -7,15 +7,11 @@ GameState.prototype.create = function() {
   this.game.physics.startSystem(Phaser.Physics.ARCADE);
   this.game.stage.backgroundColor = COLOR_DARKER;
 
-    var hits = []
   this.sounds = {
       explode: this.game.add.audio("explode"),
       death: this.game.add.audio("death"),
       big_explode: this.game.add.audio("big_explode"),
       hit: this.game.add.audio("hit"),
-      hit1: this.game.add.audio("hit1"),
-      hit2: this.game.add.audio("hit2"),
-      hit3: this.game.add.audio("hit3"),
       hits: [this.game.add.audio("hit1"),
           this.game.add.audio("hit2"),
           this.game.add.audio("hit3")]
