@@ -6,3 +6,7 @@ heavy.png Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack 
 player.png  Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
 shot.wav http://soundbible.com/1774-Laser-Machine-Gun.html Attribution 3.0
 Ima_Firin_My_Lazer.wav http://soundbible.com/1799-Ima-Firin-My-Laser.html Attribution 3.0
+shot.wav http://soundbible.com/1033-Zombie-In-Pain.html Attribution 3.0
+impact1.wav http://www.freesfx.co.uk/download/?type=mp3&id=4889 Free Sound Effects End user licence agreement
+impact2.wav http://www.freesfx.co.uk/download/?type=mp3&id=4888 Free Sound Effects End user licence agreement
+impact3.wav http://www.freesfx.co.uk/download/?type=mp3&id=4887 Free Sound Effects End user licence agreement
