@@ -35,6 +35,7 @@ GameState.prototype.create = function() {
   this.ship = new Ship(this.game,
                        this.groups.players,
                        this.groups.bullets,
+                       this.groups.ui,
                        SCREEN_WIDTH / 2,
                        SCREEN_HEIGHT / 2,
                        this.game.add.audio("shot"));

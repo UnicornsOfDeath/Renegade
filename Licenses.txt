@@ -4,6 +4,7 @@ bullet_enemy.png  http://bonsaiheld.org http://opengameart.org/content/sci-fi-sp
 gauge_back.png  http://blog-buch.rhcloud.com  http://opengameart.org/content/sci-fi-user-interface-elements CC0
 gauge_front.png  http://blog-buch.rhcloud.com  http://opengameart.org/content/sci-fi-user-interface-elements CC0
 ground.png  Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
+health.png  whilefun  http://opengameart.org/content/four-level-meter-indicator CC0
 heavy.png Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
 player.png  Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
 shot.wav http://soundbible.com/1774-Laser-Machine-Gun.html Attribution 3.0

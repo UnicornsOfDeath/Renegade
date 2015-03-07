@@ -27,6 +27,7 @@ BasicGame.Preload.prototype = {
         this.game.load.image('gauge_back', 'images/gauge_back.png');
         
         this.game.load.spritesheet('explosion', 'images/explosion.png', 16, 16);
+        this.game.load.spritesheet('health', 'images/health.png', 57, 10);
 
         this.game.load.audio('death', 'sounds/death.wav');
         this.game.load.audio('shot', 'sounds/shot.wav');
