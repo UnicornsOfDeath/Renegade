@@ -2,6 +2,7 @@ var SHIP_SPEED = 300.0;
 var FRICTION = 10.0;
 var GUN_LOCK = 10;
 var TURN_DURATION = 120;
+var BULLET_SPEED = 1000.0;
 var Ship = function(game, group, bulletGroup, x, y,
                     shotSound, jumpSound) {
   Phaser.Sprite.call(this,
@@ -68,7 +69,7 @@ Ship.prototype.fire = function() {
     muzzleOffset.add(this.x, this.y);
     new Bullet(this.game, this.bulletGroup,
                muzzleOffset.x, muzzleOffset.y,
-               this.angle, 'bullet');
+               this.angle, 'bullet', BULLET_SPEED);
     this.shotSound.play();
     this.gunLock = GUN_LOCK;
   }

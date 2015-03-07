@@ -1,8 +1,9 @@
-var GUN_LOCK_ENEMY = 200;
+var GUN_LOCK_ENEMY = 100;
 var ACCEL_ENEMY = 1;
 var FRICTION_ENEMY = 1;
 var WANDER_LOCK = 250;
 var ENEMY_SPEED = 100;
+var BULLET_SPEED_ENEMY = 500.0;
 
 var Roid = function(game, group, bulletGroup,
                     x, y, power,
@@ -69,7 +70,8 @@ Roid.prototype.update = function() {
     muzzleOffset.add(this.x, this.y);
     new Bullet(this.game, this.bulletGroup,
                muzzleOffset.x, muzzleOffset.y,
-               this.angle, 'bullet_heavy');
+               this.angle, 'bullet_heavy',
+               BULLET_SPEED_ENEMY);
     this.shotSound.play();
     this.gunLock = GUN_LOCK_ENEMY;
   }
