@@ -1,9 +1,9 @@
 var BULLET_SPEED = 1000.0;
-var Bullet = function(game, group, x, y, angle) {
+var Bullet = function(game, group, x, y, angle, key) {
   Phaser.Sprite.call(this,
                      game,
                      x, y,
-                     'bullet');
+                     key);
   this.anchor.setTo(0.5, 0.5);
   this.scale.setTo(SCALE, SCALE);
   group.add(this);

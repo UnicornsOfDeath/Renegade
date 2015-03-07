@@ -16,6 +16,7 @@ GameState.prototype.create = function() {
   this.groups = {
     bg: this.game.add.group(),
     asteroids: this.game.add.group(),
+    bullets_enemy: this.game.add.group(),
     bullets: this.game.add.group(),
     players: this.game.add.group()
   };
@@ -34,7 +35,9 @@ GameState.prototype.create = function() {
   this.cursors = this.game.input.keyboard.createCursorKeys();
   
   this.roidGenerator = new RoidGenerator(this.game,
-                                         this.groups.asteroids);
+                                         this.groups.asteroids,
+                                         this.groups.bullets_enemy,
+                                         this.game.add.audio('shot'));
 };
 
 GameState.prototype.loadLevel = function(level) {
@@ -67,6 +70,14 @@ GameState.prototype.update = function() {
       this.game.physics.arcade.collide(roid1, roid2);
     }
   }
+  // Enemy bullet to player collisions
+  this.game.physics.arcade.overlap(
+    this.groups.bullets_enemy, this.groups.players,
+    function(bullet, player) {
+     bullet.destroy();
+     player.onHit(1);
+     this.sounds.hit.play();
+    }, null, this);
 
 
   // Move ship using arrows
