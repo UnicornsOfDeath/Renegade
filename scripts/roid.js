@@ -1,4 +1,8 @@
 var GUN_LOCK_ENEMY = 200;
+var ACCEL_ENEMY = 1;
+var FRICTION_ENEMY = 1;
+var WANDER_LOCK = 250;
+var ENEMY_SPEED = 100;
 
 var Roid = function(game, group, bulletGroup,
                     x, y, power,
@@ -15,22 +19,30 @@ var Roid = function(game, group, bulletGroup,
   game.physics.arcade.enable(this);
   this.body.allowRotation = true;
 
+  this.game = game;
   this.health = power;
   this.power = power;
   this.angle = Math.random() * 360;
-  var target = new Phaser.Point(Math.random() * 0.5 + 0.25,
-                                Math.random() * 0.5 + 0.25);
-  target.multiply(game.world.width,
-                  game.world.height);
-  this.body.velocity.setTo(target.x - this.x,
-                           target.y - this.y);
-  this.body.velocity.setMagnitude(Math.random() * 50 + 100);
+  this.target = null;
+  this.wanderSomewhere();
   
   this.shotSound = shotSound;
   this.gunLock = GUN_LOCK_ENEMY;
+  this.wanderLock = WANDER_LOCK;
 };
 Roid.prototype = Object.create(Phaser.Sprite.prototype);
 Roid.prototype.constructor = Roid;
+
+Roid.prototype.wanderSomewhere = function() {
+  this.target = new Phaser.Point(
+    Math.random() * 0.8 + 0.1,
+    Math.random() * 0.8 + 0.1);
+  this.target.multiply(this.game.world.width,
+                       this.game.world.height);
+  this.body.velocity.setTo(this.target.x - this.x,
+                           this.target.y - this.y);
+  this.body.velocity.setMagnitude(ENEMY_SPEED);
+};
 
 Roid.prototype.update = function() {
   // Check if this is out of bounds and moving out
@@ -60,6 +72,33 @@ Roid.prototype.update = function() {
                this.angle, 'bullet_heavy');
     this.shotSound.play();
     this.gunLock = GUN_LOCK_ENEMY;
+  }
+  
+  // Moving around randomly
+  this.wanderLock--;
+  if (this.wanderLock < 0) {
+    this.wanderLock = WANDER_LOCK;
+    this.wanderSomewhere();
+  }
+  
+  // Move towards target
+  if (this.target.distance(new Phaser.Point(this.x, this.y)) < 10) {
+    // Too close; stop
+    var mag = this.body.velocity.getMagnitude();
+    mag -= FRICTION_ENEMY;
+    if (mag < 0) {
+      mag = 0;
+    }
+    this.body.velocity.setMagnitude(mag);
+  } else {
+    var accel = new Phaser.Point(
+      this.target.x - this.x,
+      this.target.y - this.y);
+    accel.setMagnitude(ACCEL_ENEMY);
+    this.body.velocity.add(accel.x, accel.y);
+    if (this.body.velocity.getMagnitude() > ENEMY_SPEED) {
+      this.body.velocity.setMagnitude(ENEMY_SPEED);
+    }
   }
 };
 

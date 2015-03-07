@@ -1,5 +1,5 @@
-var SHIP_SPEED = 100.0;
-var FRICTION = 5.0;
+var SHIP_SPEED = 300.0;
+var FRICTION = 10.0;
 var GUN_LOCK = 10;
 var TURN_DURATION = 120;
 var Ship = function(game, group, bulletGroup, x, y,

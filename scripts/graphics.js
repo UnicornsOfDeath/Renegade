@@ -8,7 +8,7 @@ var COLOR_ALT = 0x0078E5;
 var SCREEN_WIDTH = 1024;
 var SCREEN_HEIGHT = 576;
 
-var SCALE = 1;
+var SCALE = 0.75;
 
 function angleToPoint(angle, magnitude) {
   var radians = angle * Math.PI / 180;
