@@ -16,7 +16,8 @@ BasicGame.Preload.prototype = {
         this.preloadBar.x -= this.preloadBar.width / 2;
         this.load.setPreloadSprite(this.preloadBar);
     
-        this.game.load.image('ship', 'images/ship.png');
+        this.game.load.image('heavy', 'images/heavy.png');
+        this.game.load.image('player', 'images/player.png');
         this.game.load.image('bullet', 'images/bullet.png');
         this.game.load.image('beam', 'images/beam.png');
         this.game.load.image('roid0', 'images/roid0.png');

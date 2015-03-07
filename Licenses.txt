@@ -1,1 +1,3 @@
 File  Author  URL License
+heavy.png Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
+player.png  Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0

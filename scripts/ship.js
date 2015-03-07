@@ -1,4 +1,4 @@
-var SHIP_SPEED = 500.0;
+var SHIP_SPEED = 100.0;
 var FRICTION = 5.0;
 var GUN_LOCK = 10;
 var TURN_DURATION = 120;
@@ -7,8 +7,8 @@ var Ship = function(game, group, bulletGroup, x, y,
   Phaser.Sprite.call(this,
                      game,
                      x, y,
-                     'ship');
-  this.anchor.setTo(0.5, 0.5);
+                     'player');
+  this.anchor.setTo(0.5, 0.7);
   this.scale.setTo(SCALE, SCALE);
   group.add(this);
   this.bulletGroup = bulletGroup;
