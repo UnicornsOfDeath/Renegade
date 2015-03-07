@@ -31,14 +31,7 @@ GameState.prototype.create = function() {
   var bg = new Phaser.TileSprite(this.game, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,
                                  'ground');
   this.groups.bg.add(bg);
-
-  this.ship = new Ship(this.game,
-                       this.groups.players,
-                       this.groups.bullets,
-                       this.groups.ui,
-                       SCREEN_WIDTH / 2,
-                       SCREEN_HEIGHT / 2,
-                       this.game.add.audio("shot"));
+  
   this.cursors = this.game.input.keyboard.createCursorKeys();
   
   this.roidGenerator = new RoidGenerator(this.game,
@@ -47,10 +40,20 @@ GameState.prototype.create = function() {
                                          this.groups.players,
                                          this.game.add.audio('shot'));
 
-  this.game.input.gamepad.start();
-  
-  this.player = new PlayerController(this.game.input.gamepad.pad1, this.ship);
-  
+  this.players = [];
+  this.game.gamepads = [this.game.input.gamepad.pad1, this.game.input.gamepad.pad2]
+  var gamepadsLength = this.game.gamepads.length;
+  for (var i = 0; i < gamepadsLength; i++) {
+    var ship = new Ship(this.game,
+                       this.groups.players,
+                       this.groups.bullets,
+                       this.groups.ui,
+                       (SCREEN_WIDTH / (gamepadsLength + 1)) * (i + 1),
+                       SCREEN_HEIGHT / 2,
+                       this.game.add.audio("shot"));
+    this.players[i] = new PlayerController(this.game.gamepads[i], ship);
+  }
+
   this.gauge = new Gauge(this.game, this.groups.ui,
                          SCREEN_WIDTH / 2, 50);
   this.gameTime = GAME_TIME;
@@ -99,10 +102,12 @@ GameState.prototype.update = function() {
      this.sounds.hit.play();
     }, null, this);
 
-  this.player.update();
+  for (var i = 0; i < this.players.length; i++) {
+    this.players[i].update();
+  }
 
   // Move ship using arrows
-  if (this.cursors.left.isDown) {
+ /* if (this.cursors.left.isDown) {
     if (this.cursors.up.isDown) {
       this.ship.move(-45);
     } else if (this.cursors.down.isDown) {
@@ -122,7 +127,7 @@ GameState.prototype.update = function() {
     this.ship.move(0);
   } else if (this.cursors.down.isDown) {
     this.ship.move(180);
-  }
+  }*/
   
   // Firing
   if (this.game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
