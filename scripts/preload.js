@@ -19,6 +19,7 @@ BasicGame.Preload.prototype = {
         this.game.load.image('heavy', 'images/heavy.png');
         this.game.load.image('player', 'images/player.png');
         this.game.load.image('bullet', 'images/bullet.png');
+        this.game.load.image('bullet_heavy', 'images/bullet_heavy.png');
         this.game.load.image('beam', 'images/beam.png');
         this.game.load.image('roid0', 'images/roid0.png');
         this.game.load.image('ground', 'images/ground.png');

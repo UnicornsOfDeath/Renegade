@@ -68,10 +68,18 @@ Ship.prototype.fire = function() {
     muzzleOffset.add(this.x, this.y);
     new Bullet(this.game, this.bulletGroup,
                muzzleOffset.x, muzzleOffset.y,
-               this.angle);
+               this.angle, 'bullet');
     this.shotSound.play();
     this.gunLock = GUN_LOCK;
   }
+};
+
+Ship.prototype.onHit = function(power) {
+  this.health -= power;
+  this.tint = 0xff0000;
+  this.game.add.tween(this).to({tint:0xffffff},
+                               10,
+                               Phaser.Easing.Linear.Out).start();
 };
 
 Ship.prototype.jump = function() {
