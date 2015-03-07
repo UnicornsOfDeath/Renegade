@@ -1,5 +1,5 @@
 var Bullet = function(game, group, x, y, angle, key,
-                      speed) {
+                      speed, player=null) {
   Phaser.Sprite.call(this,
                      game,
                      x, y,
@@ -15,6 +15,8 @@ var Bullet = function(game, group, x, y, angle, key,
   this.angle = angle;
   this.body.velocity = angleToPoint(angle,
                                     speed * SCALE);
+  
+  this.player = player;
 };
 Bullet.prototype = Object.create(Phaser.Sprite.prototype);
 Bullet.prototype.constructor = Bullet;

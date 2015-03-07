@@ -33,6 +33,15 @@ var Ship = function(game, group, bulletGroup, uiGroup,
   this.radius = Math.min(this.width, this.height) / 2;
 
   this.shotSound = shotSound;
+  
+  // Score
+  this.score = 0;
+  this.scoreText = game.add.text(x, y,
+                                 "", {
+    font: "14px Arial", fill: "#ff0000",
+    fontWeight: "bold", align: "center"});
+  this.scoreText.anchor.setTo(0.5, -1);
+  uiGroup.add(this.scoreText);
 };
 Ship.prototype = Object.create(Phaser.Sprite.prototype);
 Ship.prototype.constructor = Ship;
@@ -76,6 +85,11 @@ Ship.prototype.update = function() {
     this.healthBar.visible = false;
   }
   
+  // Score text
+  this.scoreText.x = this.x;
+  this.scoreText.y = this.y;
+  this.scoreText.text = this.score;
+  
   // Friction
   this.speed -= FRICTION;
   if (this.speed < 0) {
@@ -99,7 +113,8 @@ Ship.prototype.fire = function() {
     muzzleOffset.add(this.x, this.y);
     new Bullet(this.game, this.bulletGroup,
                muzzleOffset.x, muzzleOffset.y,
-               this.angle, 'bullet', BULLET_SPEED);
+               this.angle, 'bullet', BULLET_SPEED,
+               this);
     this.shotSound.play();
     this.gunLock = GUN_LOCK;
   }

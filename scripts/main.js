@@ -67,12 +67,15 @@ GameState.prototype.loadLevel = function(level) {
 GameState.prototype.update = function() {
   // Bullet to roid collisions
   this.game.physics.arcade.overlap(this.groups.asteroids, this.groups.bullets,
-                                   function(roid, bullet) {
-                                       var hitSoundIndex = Math.floor(Math.random() * 3)
-                                    bullet.kill();
-                                    roid.onHit(2);
-                                    this.sounds.hits[hitSoundIndex].play();
-                                   }, null, this);
+    function(roid, bullet) {
+        var hitSoundIndex = Math.floor(Math.random() * 3)
+     if (bullet.player !== null) {
+       bullet.player.score++;
+     }
+     bullet.kill();
+     roid.onHit(2);
+     this.sounds.hits[hitSoundIndex].play();
+    }, null, this);
   // Roid to roid collisions
   for (var i = 0; i < this.groups.asteroids.total; i++) {
     var roid1 = this.groups.asteroids.getAt(i);
