@@ -15,6 +15,7 @@ var Ship = function(game, group, bulletGroup, x, y,
   this.bulletGroup = bulletGroup;
   
   game.physics.arcade.enable(this);
+  this.body.setSize(this.width, this.width);
   this.body.collideWorldBounds = true;
   this.speed = 0;
   
