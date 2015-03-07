@@ -34,8 +34,7 @@ GameState.prototype.create = function() {
                        this.groups.bullets,
                        SCREEN_WIDTH / 2,
                        SCREEN_HEIGHT / 2,
-                       this.game.add.audio("shot"),
-                       this.game.add.audio("jump"));
+                       this.game.add.audio("shot"));
   this.cursors = this.game.input.keyboard.createCursorKeys();
   
   this.roidGenerator = new RoidGenerator(this.game,
@@ -58,7 +57,7 @@ GameState.prototype.update = function() {
   this.game.physics.arcade.overlap(this.groups.asteroids, this.groups.bullets,
                                    function(roid, bullet) {
                                        var hitSoundIndex = Math.floor(Math.random() * 3)
-                                    bullet.destroy();
+                                    bullet.kill();
                                     roid.onHit(2);
                                     this.sounds.hits[hitSoundIndex].play();
                                    }, null, this);
@@ -80,7 +79,7 @@ GameState.prototype.update = function() {
   this.game.physics.arcade.overlap(
     this.groups.bullets_enemy, this.groups.players,
     function(bullet, player) {
-     bullet.destroy();
+     bullet.kill();
      player.onHit(1);
      this.sounds.hit.play();
     }, null, this);
@@ -113,11 +112,7 @@ GameState.prototype.update = function() {
   if (this.game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
     this.ship.fire();
   }
-  // Jumping
-  if (this.game.input.keyboard.isDown(Phaser.Keyboard.X)) {
-    this.ship.jump();
-  }
-  
+
   // Spawn new asteroids
   this.roidGenerator.update();
 };

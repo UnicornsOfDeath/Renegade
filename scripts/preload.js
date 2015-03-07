@@ -32,7 +32,6 @@ BasicGame.Preload.prototype = {
         this.game.load.audio('hit1', 'sounds/impact1.wav');
         this.game.load.audio('hit2', 'sounds/impact2.wav');
         this.game.load.audio('hit3', 'sounds/impact3.wav');
-        this.game.load.audio('jump', 'sounds/jump.wav');
         this.game.load.audio('explode', 'sounds/explode.wav');
         this.game.load.audio('big_explode', 'sounds/big_explode.mp3');
     },
