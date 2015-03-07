@@ -42,6 +42,10 @@ GameState.prototype.create = function() {
                                          this.groups.bullets_enemy,
                                          this.groups.players,
                                          this.game.add.audio('shot'));
+
+  this.game.input.gamepad.start();
+  
+  this.player = new PlayerController(this.game.input.gamepad.pad1, this.ship);
 };
 
 GameState.prototype.loadLevel = function(level) {
@@ -84,6 +88,7 @@ GameState.prototype.update = function() {
      this.sounds.hit.play();
     }, null, this);
 
+  this.player.update();
 
   // Move ship using arrows
   if (this.cursors.left.isDown) {
