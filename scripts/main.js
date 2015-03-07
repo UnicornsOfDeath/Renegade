@@ -61,7 +61,7 @@ GameState.prototype.update = function() {
   this.game.physics.arcade.overlap(this.groups.asteroids, this.groups.bullets,
                                    function(roid, bullet) {
                                        var hitSoundIndex = Math.floor(Math.random() * 3)
-                                    bullet.destroy();
+                                    bullet.kill();
                                     roid.onHit(2);
                                     this.sounds.hits[hitSoundIndex].play();
                                    }, null, this);
@@ -83,7 +83,7 @@ GameState.prototype.update = function() {
   this.game.physics.arcade.overlap(
     this.groups.bullets_enemy, this.groups.players,
     function(bullet, player) {
-     bullet.destroy();
+     bullet.kill();
      player.onHit(1);
      this.sounds.hit.play();
     }, null, this);
