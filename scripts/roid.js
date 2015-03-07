@@ -5,6 +5,7 @@ var WANDER_LOCK = 250;
 var ENEMY_SPEED = 100;
 var ENEMY_HEALTH = 1;
 var BULLET_SPEED_ENEMY = 500.0;
+var ENEMY_TURN_SPEED = 0.05;
 
 var Roid = function(game, group, bulletGroup,
                     playerGroup,
@@ -116,8 +117,8 @@ Roid.prototype.update = function() {
       continue;
     }
     var d = Phaser.Math.distance(player.x,
-                                 this.x,
                                  player.y,
+                                 this.x,
                                  this.y);
     if (closest === null || d < closestD) {
       closest = player;
@@ -125,9 +126,17 @@ Roid.prototype.update = function() {
     }
   }
   if (closest !== null) {
-    this.rotation = Math.atan2(player.y - this.y,
-                               player.x - this.x);
-    this.rotation += Math.PI / 2;
+    var r = Math.atan2(closest.y - this.y,
+                       closest.x - this.x);
+    r += Math.PI / 2;
+    if (r > Math.PI) {
+      r -= Math.PI * 2;
+    }
+    var dr = r - this.rotation;
+    if (Math.abs(dr) > ENEMY_TURN_SPEED) {
+      dr = Math.sign(dr) * ENEMY_TURN_SPEED;
+    }
+    this.rotation += dr;
   }
 };
 
