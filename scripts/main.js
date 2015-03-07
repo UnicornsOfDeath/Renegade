@@ -19,6 +19,10 @@ GameState.prototype.create = function() {
     players: this.game.add.group(),
     bullets: this.game.add.group()
   };
+  
+  var bg = new Phaser.TileSprite(this.game, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,
+                                 'ground');
+  this.groups.bg.add(bg);
 
   this.ship = new Ship(this.game,
                        this.groups.players,

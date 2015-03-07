@@ -21,9 +21,7 @@ BasicGame.Preload.prototype = {
         this.game.load.image('bullet', 'images/bullet.png');
         this.game.load.image('beam', 'images/beam.png');
         this.game.load.image('roid0', 'images/roid0.png');
-        this.game.load.image('planet0', 'images/planet0.png');
-        this.game.load.image('planet1', 'images/planet1.png');
-        this.game.load.image('planet2', 'images/planet2.png');
+        this.game.load.image('ground', 'images/ground.png');
         
         this.game.load.spritesheet('explosion', 'images/explosion.png', 16, 16);
         
