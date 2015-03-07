@@ -1,4 +1,4 @@
-JumpSquad
-=========
+sysdef
+======
 
-Prototype turn-based platformer
+Interplanetary defender, shoot-em-up game

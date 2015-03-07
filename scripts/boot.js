@@ -9,7 +9,7 @@ BasicGame.Boot.prototype = {
     },
 
     create: function () {
-        this.game.stage.backgroundColor = 0x67C989;
+        this.game.stage.backgroundColor = COLOR_DARK;
         this.input.maxPointers = 1;
 
         this.state.start('preload');

@@ -15,27 +15,22 @@ BasicGame.Preload.prototype = {
         this.preloadBar.anchor.setTo(0, 0.5);
         this.preloadBar.x -= this.preloadBar.width / 2;
         this.load.setPreloadSprite(this.preloadBar);
-
-        this.game.load.image('arrow', 'images/arrow.png');
-        this.game.load.image('arrow_down', 'images/arrow_down.png');
-        this.game.load.image('platform', 'images/platform.png');
-        this.game.load.image('temp', 'images/temp.png');
+    
+        this.game.load.image('ship', 'images/ship.png');
+        this.game.load.image('bullet', 'images/bullet.png');
+        this.game.load.image('beam', 'images/beam.png');
+        this.game.load.image('roid0', 'images/roid0.png');
+        this.game.load.image('planet0', 'images/planet0.png');
+        this.game.load.image('planet1', 'images/planet1.png');
+        this.game.load.image('planet2', 'images/planet2.png');
         
-        this.game.load.spritesheet('cat', 'images/cat.png', 128, 128);
-        this.game.load.spritesheet('dog', 'images/dog.png', 128, 128);
         this.game.load.spritesheet('explosion', 'images/explosion.png', 16, 16);
         
-        this.game.load.audio('bump', 'sounds/bump.wav');
+        this.game.load.audio('shot', 'sounds/shot.wav');
+        this.game.load.audio('hit', 'sounds/hit.wav');
         this.game.load.audio('jump', 'sounds/jump.wav');
-        this.game.load.audio('land', 'sounds/land.wav');
         this.game.load.audio('explode', 'sounds/explode.wav');
-        this.game.load.audio('step', 'sounds/step.ogg');
-        for (var i = 0; i < NUM_SWOOSHES; i++) {
-            this.game.load.audio('swoosh' + i, "sounds/sw/" + i + ".ogg");
-        }
-        for (var i = 0; i < NUM_HITS; i++) {
-            this.game.load.audio('hit' + i, "sounds/hits/" + i + ".ogg");
-        }
+        this.game.load.audio('big_explode', 'sounds/big_explode.mp3');
     },
     
     create: function () {
