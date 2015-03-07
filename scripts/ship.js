@@ -2,9 +2,7 @@ var SHIP_SPEED = 500.0;
 var FRICTION = 5.0;
 var GUN_LOCK = 10;
 var TURN_DURATION = 120;
-var JUMP_HEIGHT = 20;
-var JUMP_DURATION = 300;
-var Ship = function(game, group, bulletGroup, x, y, planet,
+var Ship = function(game, group, bulletGroup, x, y,
                     shotSound, jumpSound) {
   Phaser.Sprite.call(this,
                      game,
@@ -21,7 +19,6 @@ var Ship = function(game, group, bulletGroup, x, y, planet,
   
   this.gunLock = GUN_LOCK;
 
-  this.planet = planet;
   this.radius = Math.min(this.width, this.height) / 2;
   this.canJump = true;
 
@@ -61,11 +58,6 @@ Ship.prototype.update = function() {
   if (this.gunLock < 0) {
     this.gunLock = 0;
   }
-  
-  // Keep the ship grounded on a planet
-  if (this.planet !== null) {
-    this.planet.ground(this);
-  }
 };
 
 Ship.prototype.fire = function() {
@@ -82,6 +74,7 @@ Ship.prototype.fire = function() {
 };
 
 Ship.prototype.jump = function() {
+  /*
   if (this.canJump) {
     this.canJump = false;
     var radiusStart = Math.min(this.width, this.height) / 2;
@@ -97,5 +90,5 @@ Ship.prototype.jump = function() {
     jumpUp.chain(jumpDown);
     jumpUp.start();
     this.jumpSound.play();
-  }
+  }*/
 };
