@@ -16,8 +16,8 @@ GameState.prototype.create = function() {
   this.groups = {
     bg: this.game.add.group(),
     asteroids: this.game.add.group(),
-    players: this.game.add.group(),
-    bullets: this.game.add.group()
+    bullets: this.game.add.group(),
+    players: this.game.add.group()
   };
   
   var bg = new Phaser.TileSprite(this.game, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,

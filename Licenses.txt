@@ -1,6 +1,6 @@
 File  Author  URL License
+bullet.png  http://bonsaiheld.org http://opengameart.org/content/sci-fi-space-simple-bullets  CC0
 ground.png  Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
 heavy.png Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
-player.png  Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
-shot.wav http://soundbible.com/1774-Laser-Machine-Gun.html
+player.png  Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0shot.wav http://soundbible.com/1774-Laser-Machine-Gun.html
 Ima_Firin_My_Lazer.wav http://soundbible.com/1799-Ima-Firin-My-Laser.html
