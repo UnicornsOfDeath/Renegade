@@ -6,6 +6,7 @@ var ENEMY_SPEED = 100;
 var BULLET_SPEED_ENEMY = 500.0;
 
 var Roid = function(game, group, bulletGroup,
+                    playerGroup,
                     x, y, power,
                     shotSound) {
   Phaser.Sprite.call(this,
@@ -16,6 +17,7 @@ var Roid = function(game, group, bulletGroup,
   this.scale.setTo(SCALE, SCALE);
   group.add(this);
   this.bulletGroup = bulletGroup;
+  this.playerGroup = playerGroup;
   
   game.physics.arcade.enable(this);
   this.body.allowRotation = true;
@@ -102,6 +104,29 @@ Roid.prototype.update = function() {
       this.body.velocity.setMagnitude(ENEMY_SPEED);
     }
   }
+  
+  // Rotate to face the closest player
+  var closest = null;
+  var closestD = 0;
+  for (var i = 0; i < this.playerGroup.length; i++) {
+    var player = this.playerGroup.getAt(i);
+    if (!player.alive) {
+      continue;
+    }
+    var d = Phaser.Math.distance(player.x,
+                                 this.x,
+                                 player.y,
+                                 this.y);
+    if (closest === null || d < closestD) {
+      closest = player;
+      closestD = d;
+    }
+  }
+  if (closest !== null) {
+    this.rotation = Math.atan2(player.y - this.y,
+                               player.x - this.x);
+    this.rotation += Math.PI / 2;
+  }
 };
 
 Roid.prototype.onHit = function(power) {
@@ -114,10 +139,12 @@ Roid.prototype.onHit = function(power) {
 
 var RoidGenerator = function(game, group,
                              bulletGroup,
+                             playerGroup,
                              shotSound) {
   this.game = game;
   this.group = group;
   this.bulletGroup = bulletGroup;
+  this.playerGroup = playerGroup;
   this.timer = 0;
   this.interval = 100;
   this.shotSound = shotSound;
@@ -135,6 +162,7 @@ RoidGenerator.prototype.update = function() {
                  this.game.world.height / 2);
     new Roid(this.game, this.group,
              this.bulletGroup,
+             this.playerGroup,
              spawnPos.x, spawnPos.y,
              5,
              this.shotSound); // TODO: random power and roids

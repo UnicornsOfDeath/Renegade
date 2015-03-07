@@ -37,6 +37,7 @@ GameState.prototype.create = function() {
   this.roidGenerator = new RoidGenerator(this.game,
                                          this.groups.asteroids,
                                          this.groups.bullets_enemy,
+                                         this.groups.players,
                                          this.game.add.audio('shot'));
 };
 
