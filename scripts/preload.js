@@ -23,6 +23,8 @@ BasicGame.Preload.prototype = {
         this.game.load.image('beam', 'images/beam.png');
         this.game.load.image('roid0', 'images/roid0.png');
         this.game.load.image('ground', 'images/ground.png');
+        this.game.load.image('join_menu', 'images/join_menu.png');
+        this.game.load.image('cancel_menu', 'images/cancel_menu.png');
         
         this.game.load.spritesheet('explosion', 'images/explosion.png', 16, 16);
 
@@ -37,6 +39,6 @@ BasicGame.Preload.prototype = {
     },
     
     create: function () {
-        this.state.start('game');
+        this.state.start('menu');
     }
 };
