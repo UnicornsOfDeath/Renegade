@@ -75,7 +75,10 @@ MenuState.prototype.update = function() {
         }
     }
 
-    if (this.game.input.gamepad.pad1.isDown(Phaser.Gamepad.XBOX360_START)) {
+    if (this.game.input.gamepad.pad1.isDown(Phaser.Gamepad.XBOX360_START) ||
+        this.game.input.gamepad.pad2.isDown(Phaser.Gamepad.XBOX360_START) ||
+        this.game.input.gamepad.pad3.isDown(Phaser.Gamepad.XBOX360_START) ||
+        this.game.input.gamepad.pad4.isDown(Phaser.Gamepad.XBOX360_START)) {
         this.state.start('game');
     }
 };
