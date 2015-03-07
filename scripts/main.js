@@ -1,3 +1,5 @@
+var GAME_TIME = 1800;
+
 var GameState = function(game){};
 
 GameState.prototype.preload = function() {
@@ -22,7 +24,8 @@ GameState.prototype.create = function() {
     asteroids: this.game.add.group(),
     bullets_enemy: this.game.add.group(),
     bullets: this.game.add.group(),
-    players: this.game.add.group()
+    players: this.game.add.group(),
+    ui: this.game.add.group()
   };
   
   var bg = new Phaser.TileSprite(this.game, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,
@@ -46,6 +49,10 @@ GameState.prototype.create = function() {
   this.game.input.gamepad.start();
   
   this.player = new PlayerController(this.game.input.gamepad.pad1, this.ship);
+  
+  this.gauge = new Gauge(this.game, this.groups.ui,
+                         SCREEN_WIDTH / 2, 50);
+  this.gameTime = GAME_TIME;
 };
 
 GameState.prototype.loadLevel = function(level) {
@@ -120,6 +127,14 @@ GameState.prototype.update = function() {
 
   // Spawn new asteroids
   this.roidGenerator.update();
+  
+  // Update game time
+  this.gameTime--;
+  this.gauge.setValue(this.gameTime / GAME_TIME);
+  if (this.gameTime <= 0) {
+    this.gauge.hide();
+    this.roidGenerator.enabled = false;
+  }
 };
 
 GameState.prototype.render = function() {

@@ -1,6 +1,8 @@
 File  Author  URL License
 bullet.png  http://bonsaiheld.org http://opengameart.org/content/sci-fi-space-simple-bullets  CC0
 bullet_enemy.png  http://bonsaiheld.org http://opengameart.org/content/sci-fi-space-simple-bullets  CC0
+gauge_back.png  http://blog-buch.rhcloud.com  http://opengameart.org/content/sci-fi-user-interface-elements CC0
+gauge_front.png  http://blog-buch.rhcloud.com  http://opengameart.org/content/sci-fi-user-interface-elements CC0
 ground.png  Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
 heavy.png Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
 player.png  Tatermand http://opengameart.org/content/top-down-sci-fi-shooter-pack CC-BY-SA 3.0
