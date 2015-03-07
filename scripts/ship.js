@@ -62,8 +62,9 @@ Ship.prototype.update = function() {
 
 Ship.prototype.fire = function() {
   if (this.gunLock === 0) {
-    var muzzleOffset = angleToPoint(this.angle,
-                                    this.height / 2);
+    var offY = angleToPoint(this.angle, this.height / 2);
+    var offX = angleToPoint(this.angle + 90, this.width * 0.12);
+    var muzzleOffset = Phaser.Point.add(offX, offY);
     muzzleOffset.add(this.x, this.y);
     new Bullet(this.game, this.bulletGroup,
                muzzleOffset.x, muzzleOffset.y,
