@@ -3,6 +3,7 @@ var ACCEL_ENEMY = 1;
 var FRICTION_ENEMY = 1;
 var WANDER_LOCK = 250;
 var ENEMY_SPEED = 100;
+var ENEMY_HEALTH = 1;
 var BULLET_SPEED_ENEMY = 500.0;
 
 var Roid = function(game, group, bulletGroup,
@@ -147,8 +148,9 @@ var RoidGenerator = function(game, group,
   this.bulletGroup = bulletGroup;
   this.playerGroup = playerGroup;
   this.timer = 0;
-  this.interval = 100;
+  this.interval = 50;
   this.shotSound = shotSound;
+  this.enabled = true;
 };
 
 RoidGenerator.prototype.setInterval = function(interval) {
@@ -156,6 +158,9 @@ RoidGenerator.prototype.setInterval = function(interval) {
 };
 
 RoidGenerator.prototype.update = function() {
+  if (!this.enabled) {
+    return;
+  }
   if (this.timer <= 0) {
     var spawnPos = angleToPoint(Math.random() * 180,
                                 this.game.world.width / 2 + 100);
@@ -165,7 +170,7 @@ RoidGenerator.prototype.update = function() {
              this.bulletGroup,
              this.playerGroup,
              spawnPos.x, spawnPos.y,
-             5,
+             ENEMY_HEALTH,
              this.shotSound); // TODO: random power and roids
     this.timer = (Math.random() + 0.5) * this.interval;
     console.log("roid");

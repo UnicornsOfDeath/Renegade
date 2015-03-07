@@ -3,7 +3,9 @@ var FRICTION = 10.0;
 var GUN_LOCK = 10;
 var TURN_DURATION = 120;
 var BULLET_SPEED = 1000.0;
-var Ship = function(game, group, bulletGroup, x, y,
+var REGEN_TIMER = 120;
+var Ship = function(game, group, bulletGroup, uiGroup,
+                    x, y,
                     shotSound) {
   Phaser.Sprite.call(this,
                      game,
@@ -13,6 +15,13 @@ var Ship = function(game, group, bulletGroup, x, y,
   this.scale.setTo(SCALE, SCALE);
   group.add(this);
   this.bulletGroup = bulletGroup;
+  
+  this.healthBar = new Phaser.Sprite(game,
+                                     x, y,
+                                     'health');
+  this.healthBar.anchor.setTo(0.5, 3);
+  uiGroup.add(this.healthBar);
+  this.health = 4;
   
   game.physics.arcade.enable(this);
   this.body.setSize(this.width, this.width);
@@ -25,6 +34,17 @@ var Ship = function(game, group, bulletGroup, x, y,
   this.radius = Math.min(this.width, this.height) / 2;
 
   this.shotSound = shotSound;
+  
+  // Score
+  this.score = 0;
+  this.scoreText = game.add.text(x, y,
+                                 "", {
+    font: "14px Arial", fill: "#ff0000",
+    fontWeight: "bold", align: "center"});
+  this.scoreText.anchor.setTo(0.5, -1);
+  uiGroup.add(this.scoreText);
+  
+  this.regenLock = REGEN_TIMER;
 };
 Ship.prototype = Object.create(Phaser.Sprite.prototype);
 Ship.prototype.constructor = Ship;
@@ -60,6 +80,28 @@ Ship.prototype.face = function(angle) {
 }
 
 Ship.prototype.update = function() {
+  // Healthbar
+  this.healthBar.x = this.x;
+  this.healthBar.y = this.y;
+  this.healthBar.frame = this.health - 1;
+  if (this.health <= 0) {
+    this.healthBar.visible = false;
+  }
+  
+  // Health regen
+  if (this.health < 4) {
+    this.regenLock--;
+    if (this.regenLock <= 0) {
+      this.health++;
+      this.regenLock += REGEN_TIMER;
+    }
+  }
+  
+  // Score text
+  this.scoreText.x = this.x;
+  this.scoreText.y = this.y;
+  this.scoreText.text = this.score;
+  
   // Friction
   this.speed -= FRICTION;
   if (this.speed < 0) {
@@ -83,7 +125,8 @@ Ship.prototype.fire = function() {
     muzzleOffset.add(this.x, this.y);
     new Bullet(this.game, this.bulletGroup,
                muzzleOffset.x, muzzleOffset.y,
-               this.angle, 'bullet', BULLET_SPEED);
+               this.angle, 'bullet', BULLET_SPEED,
+               this);
     this.shotSound.play();
     this.gunLock = GUN_LOCK;
   }
