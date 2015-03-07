@@ -3,6 +3,7 @@ var FRICTION = 10.0;
 var GUN_LOCK = 10;
 var TURN_DURATION = 120;
 var BULLET_SPEED = 1000.0;
+var REGEN_TIMER = 120;
 var Ship = function(game, group, bulletGroup, uiGroup,
                     x, y,
                     shotSound) {
@@ -42,6 +43,8 @@ var Ship = function(game, group, bulletGroup, uiGroup,
     fontWeight: "bold", align: "center"});
   this.scoreText.anchor.setTo(0.5, -1);
   uiGroup.add(this.scoreText);
+  
+  this.regenLock = REGEN_TIMER;
 };
 Ship.prototype = Object.create(Phaser.Sprite.prototype);
 Ship.prototype.constructor = Ship;
@@ -83,6 +86,15 @@ Ship.prototype.update = function() {
   this.healthBar.frame = this.health - 1;
   if (this.health <= 0) {
     this.healthBar.visible = false;
+  }
+  
+  // Health regen
+  if (this.health < 4) {
+    this.regenLock--;
+    if (this.regenLock <= 0) {
+      this.health++;
+      this.regenLock += REGEN_TIMER;
+    }
   }
   
   // Score text
