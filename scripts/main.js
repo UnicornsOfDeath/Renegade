@@ -41,7 +41,7 @@ GameState.prototype.create = function() {
                                          this.game.add.audio('shot'));
 
   this.players = [];
-  this.game.gamepads = [this.game.input.gamepad.pad1, this.game.input.gamepad.pad2]
+  //this.game.gamepads = [this.game.input.gamepad.pad1, this.game.input.gamepad.pad2]
   var gamepadsLength = this.game.gamepads.length;
   for (var i = 0; i < gamepadsLength; i++) {
     var ship = new Ship(this.game,

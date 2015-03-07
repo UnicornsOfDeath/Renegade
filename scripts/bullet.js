@@ -1,5 +1,5 @@
 var Bullet = function(game, group, x, y, angle, key,
-                      speed, player=null) {
+                      speed, player) {
   Phaser.Sprite.call(this,
                      game,
                      x, y,

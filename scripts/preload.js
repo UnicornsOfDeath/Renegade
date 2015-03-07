@@ -27,7 +27,7 @@ BasicGame.Preload.prototype = {
         this.game.load.image('cancel_menu', 'images/cancel_menu.png');
         this.game.load.image('gauge_front', 'images/gauge_front.png');
         this.game.load.image('gauge_back', 'images/gauge_back.png');
-        
+
         this.game.load.spritesheet('explosion', 'images/explosion.png', 16, 16);
         this.game.load.spritesheet('health', 'images/health.png', 57, 10);
 
